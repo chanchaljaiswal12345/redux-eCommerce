@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import CustomButton from "../components/custombutton";
 import Link from "next/link";
@@ -24,43 +24,33 @@ export interface IData {
   products: IProductList;
 }
 async function ProductList() {
-  // const data = await fetch("https://dummyjson.com/products");
-  // const response: IData = await data.json();
-  // return response.products;
-
-  const data = await getApi("products")
-  console.log(data.products)
-  return data.products
+  const data = await getApi("products");
+  console.log(data.products);
+  return data.products;
 }
 
-
 export default function Page() {
-
-  const [productlist, setproductlist] = useState()
+  const [productlist, setproductlist] = useState();
   const changeData = (item: IProductList) => {
-
-    localStorage.setItem("item", JSON.stringify(item))
-  }
+    localStorage.setItem("item", JSON.stringify(item));
+  };
 
   useEffect(() => {
-    getData()
-  }, [])
+    getData();
+  }, []);
 
   const getData = async () => {
     const data = await ProductList();
-    setproductlist(data)
-    console.log(data)
-  }
+    setproductlist(data);
+    console.log(data);
+  };
 
   return (
     <div>
       <div className="flex flex-wrap container mx-auto p-6 ">
-        {productlist?.map((item) => (
+        {productlist?.map((item: any) => (
           <>
-
-
             <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-10 h-">
-
               <div className=" ">
                 <a href="#">
                   {" "}
@@ -95,10 +85,7 @@ export default function Page() {
                   className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   <button onClick={() => changeData(item)}>
-                    <Link href={`/selecteditem/${item.id}`}>
-                      View Details
-                    </Link>
-
+                    <Link href={`/selecteditem/${item.id}`}>View Details</Link>
                   </button>
 
                   <svg
@@ -148,54 +135,3 @@ export default function Page() {
     </div>
   );
 }
-
-// import Image from "next/image"
-// import CustomButton from "../components/custombutton"
-// import Link from "next/link"
-// // import { GetServerSideProps } from "next"
-
-// export interface IProductList {
-//   id: number,
-//   title: string,
-//   description: string,
-//   price: number,
-//   discountPercentage: number,
-//   rating: number,
-//   stock: number,
-//   brand: string,
-//   category: string,
-//   thumbnail: string,
-//   // images: string[]
-// }
-
-//  export interface IData {
-//     products : IProductList
-// }
-// async function  ProductList (){
-//   const data = await fetch("https://dummyjson.com/products")
-//    const response:IData = await data.json()
-//   return response.products
-// }
-
-// export default async function Page() {
-//   const productlist:IProductList[] = await ProductList()
-//   console.log(productlist)
-
-//   return (
-//     <div>
-//     {productlist?.map((item)=>(
-// <>
-// <h1>{item.id}</h1>
-// <Link href={`/selecteditem/${item.category}`}>tEST</Link>
-
-// <img src={item.thumbnail} width={100} height={100} alt="mage"/>
-// <p>{item.price}</p>
-// {/* <button onClick={() => console.log(item.id)}>Buy now </button> */}
-// <CustomButton apidata={item}/>
-// </>
-//     )
-
-//   )}
-//     </div>
-//   )
-// }
