@@ -20,12 +20,14 @@ import { useDispatch } from "react-redux"
  const getData = async () => {
   const id = props.params.slug
   const data = await dispatch(fetchData(id))
+  console.log(data)
   setDataObject(data)
  }
  
     return(
         <>
-        {console.log(props.params.slug)}
+        {/* {console.log(dataObject)} */}
+        {/* {console.log(props.params.slug)} */}
         <h2 className="mt-2 mb-2 font-bold text-2xl font-Headingg text-center">
         <h1> welcome to stackInfinte </h1>
           </h2>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import CustomButton from "../components/custombutton";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getApi } from "../services/ApiHelper";
 // import { GetServerSideProps } from "next"
 
 export interface IProductList {
@@ -23,9 +24,13 @@ export interface IData {
   products: IProductList;
 }
 async function ProductList() {
-  const data = await fetch("https://dummyjson.com/products");
-  const response: IData = await data.json();
-  return response.products;
+  // const data = await fetch("https://dummyjson.com/products");
+  // const response: IData = await data.json();
+  // return response.products;
+
+  const data = await getApi("products")
+  console.log(data.products)
+  return data.products
 }
 
 
